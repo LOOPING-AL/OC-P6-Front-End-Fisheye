@@ -1,3 +1,5 @@
+import { photographerFactory } from "../factories/photographer.js";
+
 async function getPhotographers() {
   var photographers;
   await fetch("../../assets/data/photographers.json")
@@ -5,7 +7,6 @@ async function getPhotographers() {
     .then((data) => {
       photographers = data.photographers;
     });
-  console.log(photographers);
   return {
     photographers,
   };
@@ -14,11 +15,14 @@ async function getPhotographers() {
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
 
+  let i = 1;
   photographers.forEach((photographer) => {
-    const photographerModel = photographerFactory(photographer);
+    i++;
+    const photographerModel = photographerFactory(photographer, i);
     const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection.appendChild(userCardDOM);
+    photographersSection?.appendChild(userCardDOM);
   });
+  console.log("window ", window);
 }
 
 async function init() {

@@ -1,1 +1,7 @@
-//Mettre le code JavaScript lié à la page photographer.html
+import { closeModal, displayModal } from "../utils/contactForm.js";
+
+const close = document.getElementById("close");
+const open = document.getElementById("open");
+
+close.addEventListener("click", () => closeModal());
+open.addEventListener("click", () => displayModal());
