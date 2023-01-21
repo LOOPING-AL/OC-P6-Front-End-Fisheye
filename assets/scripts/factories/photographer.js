@@ -1,5 +1,5 @@
 export function photographerFactory(data, i) {
-  const { name, portrait, city, country, tagline, price } = data;
+  const { name, portrait, city, country, tagline, price, id } = data;
 
   const picture = `assets/images/SamplePhotos/PhotographersID/${portrait}`;
 
@@ -13,8 +13,7 @@ export function photographerFactory(data, i) {
     h2.textContent = name;
     const link = document.createElement("a");
     link.setAttribute("tabindex", i);
-    link.href = `assets/pages/photographer.html`;
-    // link.href = `assets/pages/photographer.html?id="${name}"`;
+    link.href = `assets/pages/photographer.html?id=${id}`;
     const h3 = document.createElement("h3");
     h3.textContent = `${city}, ${country}`;
     const h4 = document.createElement("h4");
@@ -30,4 +29,33 @@ export function photographerFactory(data, i) {
     return article;
   }
   return { name, picture, getUserCardDOM };
+}
+
+export function photographerPage(data) {
+  const { name, portrait, city, country, tagline, price, id } = data;
+
+  const picture = `../../assets/images/SamplePhotos/PhotographersID/${portrait}`;
+
+  function getHeaderLeft() {
+    const div = document.createElement("div");
+
+    const h2 = document.createElement("h2");
+    h2.textContent = name;
+    const h3 = document.createElement("h3");
+    h3.textContent = `${city}, ${country}`;
+    const h4 = document.createElement("h4");
+    h4.textContent = tagline;
+    div.appendChild(h2);
+    div.appendChild(h3);
+    div.appendChild(h4);
+    return div;
+  }
+  function getHeaderRight() {
+    const img = document.createElement("img");
+    img.setAttribute("src", picture);
+    img.setAttribute("alt", name);
+    console.log(img);
+    return img;
+  }
+  return { getHeaderLeft, getHeaderRight };
 }
