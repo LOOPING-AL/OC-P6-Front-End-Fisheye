@@ -1,9 +1,9 @@
+import { domElements } from "../domElements/domElements.js";
+
 export function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+  domElements.modal.style.display = "block";
 }
 
 export function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
+  domElements.modal.style.display = "none";
 }

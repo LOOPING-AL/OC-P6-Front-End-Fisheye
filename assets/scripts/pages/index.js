@@ -1,4 +1,5 @@
 import { photographerFactory } from "../factories/photographer.js";
+import { domElements } from "../domElements/domElements.js";
 
 async function getPhotographers() {
   var photographers;
@@ -13,16 +14,13 @@ async function getPhotographers() {
 }
 
 async function displayData(photographers) {
-  const photographersSection = document.querySelector(".photographer_section");
-
   let i = 1;
   photographers.forEach((photographer) => {
     i++;
     const photographerModel = photographerFactory(photographer, i);
     const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection?.appendChild(userCardDOM);
+    domElements.photographersSection?.appendChild(userCardDOM);
   });
-  console.log("window ", window);
 }
 
 async function init() {

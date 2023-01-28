@@ -13,7 +13,8 @@ export function photographerFactory(data, i) {
     h2.textContent = name;
     const link = document.createElement("a");
     link.setAttribute("tabindex", i);
-    link.href = `assets/pages/photographer.html?id=${id}`;
+    const params = new URLSearchParams({ id: id });
+    link.href = `assets/pages/photographer.html?` + params;
     const h3 = document.createElement("h3");
     h3.textContent = `${city}, ${country}`;
     const h4 = document.createElement("h4");
@@ -54,7 +55,6 @@ export function photographerPage(data) {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", name);
-    console.log(img);
     return img;
   }
   return { getHeaderLeft, getHeaderRight };

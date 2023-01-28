@@ -1,11 +1,11 @@
 import { closeModal, displayModal } from "../utils/contactForm.js";
 import { photographerPage } from "../factories/photographer.js";
+import { domElements } from "../domElements/domElements.js";
+import { useFilter } from "../utils/filter.js";
 
-const close = document.getElementById("close");
-const open = document.getElementById("open");
-
-close.addEventListener("click", () => closeModal());
-open.addEventListener("click", () => displayModal());
+domElements.close.addEventListener("click", () => closeModal());
+domElements.open.addEventListener("click", () => displayModal());
+domElements.filter.addEventListener("click", (e) => useFilter(e));
 
 async function getPhotographer(id) {
   var photographer;
@@ -23,7 +23,6 @@ async function getPhotographer(id) {
 
 async function displayData(photographer) {
   const contact_button = document.querySelector(".contact_button");
-
   const photographerModel = photographerPage(photographer);
   const getHeaderLeft = photographerModel.getHeaderLeft();
   contact_button?.parentNode.insertBefore(getHeaderLeft, contact_button);

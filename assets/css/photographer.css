@@ -5,23 +5,26 @@
 .photograph-header {
   background-color: #fafafa;
   height: 300px;
-  margin: 0 100px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 .photograph-header h2 {
   font-weight: 400;
   font-size: 64px;
   color: #d3573c;
-  margin: 0;
-  padding: 0;
 }
 .photograph-header h3 {
-  margin: 0;
-  padding: 0;
   font-weight: 400;
   font-size: 24px;
   color: #901c1c;
+}
+.photograph-header h4 {
+  font-weight: 400;
+  font-size: 18px;
+  color: #525252;
 }
 .photograph-header img {
   width: 200px;
@@ -41,6 +44,7 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.2s ease-out;
 }
 
 .modal {
@@ -95,4 +99,85 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.filter h3 {
+  margin-right: 25px;
+  margin-top: 20px;
+}
+
+.filter-choices {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background: #911c1c;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  min-width: 150px;
+  min-height: 40px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #ffffff;
+  animation: 0.5s;
+  transition: all 1s ease-out;
+}
+
+.filter-first {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-icon {
+  width: 20px;
+  transform: rotate(180deg);
+  filter: invert(100%) sepia(45%) saturate(2%) hue-rotate(273deg)
+    brightness(116%) contrast(100%);
+  transition: all 0.5s;
+}
+.filter-icon.open {
+  transform: rotate(0deg);
+}
+.filter-choices-choice {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transform-origin: 50% 0;
+  overflow: hidden;
+  animation: 0.2s linear;
+  animation-name: append-animate;
+}
+
+@keyframes append-animate {
+  from {
+    margin: 0;
+    margin-left: 10px;
+    font-size: 0;
+  }
+}
+
+@keyframes disappear-animate {
+  to {
+    top: -100%;
+    margin: 0;
+    font-size: 0;
+  }
+}
+
+.filter-choices-separation {
+  background: #ffffff;
+  width: 150px;
+  height: 1px;
 }
