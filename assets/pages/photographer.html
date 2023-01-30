@@ -20,14 +20,28 @@
         <img src="../images/logo/logo.png" class="logo" />
       </a>
     </header>
+
     <main id="main">
       <div class="photograph-header">
         <button class="contact_button" id="open">Contactez-moi</button>
       </div>
+
       <div class="filter">
         <h3>Trier par</h3>
-        <div class="filter-choices">
-          <div class="filter-choices-choice filter-first">
+
+        <div
+          class="filter-choices"
+          role="listbox"
+          tabindex="2"
+          for="filter"
+          aria-haspopup="listbox"
+          aria-expanded="true"
+        >
+          <div
+            role="option"
+            name="Popularité"
+            class="filter-choices-choice filter-first"
+          >
             <h4 class="theChoice">Popularité</h4>
             <img
               class="filter-icon"
@@ -44,6 +58,7 @@
           <h2>Contactez-moi</h2>
           <img src="../images/icons/close.svg" id="close" />
         </header>
+
         <form>
           <div>
             <label>Prénom</label>

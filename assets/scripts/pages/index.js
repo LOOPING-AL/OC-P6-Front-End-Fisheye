@@ -1,17 +1,6 @@
 import { photographerFactory } from "../factories/photographer.js";
 import { domElements } from "../domElements/domElements.js";
-
-async function getPhotographers() {
-  var photographers;
-  await fetch("../../assets/data/photographers.json")
-    .then((response) => response.json())
-    .then((data) => {
-      photographers = data.photographers;
-    });
-  return {
-    photographers,
-  };
-}
+import { getPhotographers } from "../factories/query.js";
 
 async function displayData(photographers) {
   let i = 1;

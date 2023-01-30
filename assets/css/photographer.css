@@ -46,6 +46,10 @@
   cursor: pointer;
   transition: all 0.2s ease-out;
 }
+.contact_button:hover,
+.filter-choices:hover {
+  scale: 1.05;
+}
 
 .modal {
   border-radius: 5px;
@@ -129,7 +133,7 @@ form input {
   font-size: 18px;
   color: #ffffff;
   animation: 0.5s;
-  transition: all 1s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .filter-first {
@@ -180,4 +184,45 @@ form input {
   background: #ffffff;
   width: 150px;
   height: 1px;
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 30px;
+  row-gap: 20px;
+}
+article {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+}
+
+article img {
+  height: 500px;
+  width: 550px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+article > div {
+  width: 550px;
+  display: flex;
+  justify-content: space-between;
+}
+article h5 {
+  font-weight: 400;
+  font-size: 24px;
+  color: #911c1c;
+}
+
+.divLikes {
+  display: flex;
+  align-items: center;
+}
+.like {
+  margin-left: 6px;
+  height: 18.35px;
+  width: 17.5px;
 }

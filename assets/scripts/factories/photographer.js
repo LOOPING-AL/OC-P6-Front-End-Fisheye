@@ -32,10 +32,10 @@ export function photographerFactory(data, i) {
   return { name, picture, getUserCardDOM };
 }
 
-export function photographerPage(data) {
-  const { name, portrait, city, country, tagline, price, id } = data;
+export function photographerPage(photographer, images) {
+  const { name, portrait, city, country, tagline, price, id } = photographer;
 
-  const picture = `../../assets/images/SamplePhotos/PhotographersID/${portrait}`;
+  const picturePhotograph = `../../assets/images/SamplePhotos/PhotographersID/${portrait}`;
 
   function getHeaderLeft() {
     const div = document.createElement("div");
@@ -51,11 +51,52 @@ export function photographerPage(data) {
     div.appendChild(h4);
     return div;
   }
+
   function getHeaderRight() {
     const img = document.createElement("img");
-    img.setAttribute("src", picture);
+    img.setAttribute("src", picturePhotograph);
     img.setAttribute("alt", name);
     return img;
   }
-  return { getHeaderLeft, getHeaderRight };
+
+  function getAllImages() {
+    const first = name.substring(0, name.lastIndexOf(" "));
+    const render = document.createElement("div");
+    render.classList = "images";
+    let tabCounter = 5;
+    images.forEach((image) => {
+      const article = document.createElement("article");
+      const photographSImage = `../../assets/images/SamplePhotos/${first}/${
+        image.image ? image.image : image.video
+      }`;
+      const img = document.createElement("img");
+      img.setAttribute("src", photographSImage);
+      img.setAttribute("alt", image.title);
+      img.setAttribute("tabindex", tabCounter);
+      const div = document.createElement("div");
+      const title = document.createElement("h5");
+      title.textContent = image.title;
+
+      const divLikes = document.createElement("div");
+      divLikes.classList = "divLikes";
+      const likes = document.createElement("h5");
+      likes.textContent = image.likes;
+      const like = document.createElement("img");
+      like.setAttribute("src", "../../assets/images/icons/like.svg");
+      like.setAttribute("alt", "like");
+      like.classList = "like";
+
+      div.appendChild(title);
+      divLikes.appendChild(likes);
+      divLikes.appendChild(like);
+      div.appendChild(divLikes);
+      article.appendChild(img);
+      article.appendChild(div);
+      render.appendChild(article);
+      tabCounter++;
+    });
+    return render;
+  }
+
+  return { getHeaderLeft, getHeaderRight, getAllImages };
 }
