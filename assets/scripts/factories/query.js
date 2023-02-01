@@ -1,6 +1,6 @@
 export async function getPhotographers() {
   let photographers;
-  await fetch("../../assets/data/photographers.json")
+  await fetch('../../assets/data/photographers.json')
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
@@ -12,7 +12,7 @@ export async function getPhotographers() {
 
 export async function getPhotographer(id) {
   let photographer;
-  await fetch("../../assets/data/photographers.json")
+  await fetch('../../assets/data/photographers.json')
     .then((response) => response.json())
     .then((data) => {
       photographer = data.photographers.find(
@@ -26,7 +26,7 @@ export async function getPhotographer(id) {
 
 export async function getPhotographerSImages(photographer) {
   let images;
-  await fetch("../../assets/data/photographers.json")
+  await fetch('../../assets/data/photographers.json')
     .then((response) => response.json())
     .then((data) => {
       images = data.media.filter(

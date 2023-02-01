@@ -1,9 +1,9 @@
-import domElements from "../domElements/domElements.js";
+import domElements from '../domElements.js';
 
 export function displayModal() {
-  domElements.modal.style.display = "block";
+  domElements.modal.style.display = 'block';
 }
 
 export function closeModal() {
-  domElements.modal.style.display = "none";
+  domElements.modal.style.display = 'none';
 }
