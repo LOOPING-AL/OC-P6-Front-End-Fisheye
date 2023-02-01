@@ -52,23 +52,57 @@
         </div>
       </div>
     </main>
+
     <div id="contact_modal">
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
+          <h2 class="modal-title">Contactez-moi</h2>
           <img src="../assets/images/icons/close.svg" id="close" />
         </header>
 
-        <form>
-          <div>
-            <label>Prénom</label>
-            <input />
-            <label>Nom</label>
-            <input />
-            <label>Email</label>
-            <input />
-            <label>Votre message</label>
-            <textarea></textarea>
+        <form id="formAll">
+          <div class="formData">
+            <label for="first">Prénom</label><br />
+            <input
+              class="text-control"
+              type="text"
+              id="first"
+              name="first"
+              aria-invalid="false"
+              aria-errormessage="errlast"
+            /><br />
+            <span id="errfirst" class="error-message"></span>
+
+            <label for="last">Nom</label><br />
+            <input
+              class="text-control"
+              type="text"
+              id="last"
+              name="last"
+              aria-invalid="false"
+              aria-errormessage="errlast"
+            /><br />
+            <span id="errlast" class="error-message"></span>
+
+            <label for="email">E-mail</label><br />
+            <input
+              class="text-control"
+              id="email"
+              name="email"
+              aria-invalid="false"
+              aria-errormessage="erremail"
+            /><br />
+            <span id="erremail" class="error-message"></span>
+
+            <label for="message">Votre message</label>
+            <textarea
+              class="text-control"
+              id="message"
+              name="message"
+              aria-invalid="false"
+              aria-errormessage="errmessage"
+            ></textarea>
+            <span id="errmessage" class="error-message"></span>
           </div>
           <button type="submit" class="contact_button">Envoyer</button>
         </form>

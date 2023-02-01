@@ -1,3 +1,5 @@
+import domElements from '../domElements.js';
+
 export function photographerFactory(data, i) {
   const { name, portrait, city, country, tagline, price, id } = data;
 
@@ -9,18 +11,24 @@ export function photographerFactory(data, i) {
     const img = document.createElement('img');
     img.setAttribute('src', picture);
     img.setAttribute('alt', name);
+
     const h2 = document.createElement('h2');
     h2.textContent = name;
+
     const link = document.createElement('a');
     link.setAttribute('tabindex', i);
     const params = new URLSearchParams({ id: id });
     link.href = `/pages/photographer.html?` + params;
+
     const h3 = document.createElement('h3');
     h3.textContent = `${city}, ${country}`;
+
     const h4 = document.createElement('h4');
     h4.textContent = tagline;
+
     const h5 = document.createElement('h5');
     h5.textContent = `${price} €/jour`;
+
     article.appendChild(link);
     link.appendChild(img);
     link.appendChild(h2);
@@ -46,10 +54,13 @@ export function photographerPage(photographer, images) {
 
     const h2 = document.createElement('h2');
     h2.textContent = name;
+
     const h3 = document.createElement('h3');
     h3.textContent = `${city}, ${country}`;
+
     const h4 = document.createElement('h4');
     h4.textContent = tagline;
+
     div.appendChild(h2);
     div.appendChild(h3);
     div.appendChild(h4);
@@ -65,7 +76,17 @@ export function photographerPage(photographer, images) {
 
   function getAllImages() {
     const first = name.substring(0, name.lastIndexOf(' '));
+    images.sort(sortByFilter);
+    function sortByFilter(a, b) {
+      const theChoice = domElements.theChoice.innerHTML;
+      if (theChoice === 'Popularité') {
+        return a.likes < b.likes ? 1 : -1;
+      } else if (theChoice === 'Date') {
+        return b.date < a.date ? 1 : -1;
+      } else return b.title < a.title ? 1 : -1;
+    }
 
+    // console.log(domElements.allImages !== null);
     const render = document.createElement('div');
     render.classList = 'images';
 
@@ -86,8 +107,10 @@ export function photographerPage(photographer, images) {
 
       const divLikes = document.createElement('div');
       divLikes.classList = 'divLikes';
+
       const likes = document.createElement('h5');
       likes.textContent = image.likes;
+
       const like = document.createElement('img');
       like.setAttribute('src', '../../assets/images/icons/like.svg');
       like.setAttribute('alt', 'like');

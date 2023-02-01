@@ -1,6 +1,7 @@
 import domElements from '../domElements.js';
+import { photographerPage } from '../factories/photographer.js';
 
-export function useFilter(e) {
+export function useFilter(e, photographer) {
   domElements.theChoice.focus();
   const choices = ['Popularité', 'Date', 'Titre'];
   if (
@@ -9,12 +10,12 @@ export function useFilter(e) {
   ) {
     domElements.filterIcon?.classList.add('open');
     let tabCounter = 3;
+
     choices.forEach((choice, id) => {
       if (choice !== domElements.filterChoices.children[0].outerText) {
         const separation = document.createElement('div');
         separation.classList.add('filter-choices-separation');
         separation.id = 'choice';
-        domElements.filterChoices.appendChild(separation);
 
         const div = document.createElement('div');
         div.classList.add('filter-choices-choice');
@@ -23,22 +24,34 @@ export function useFilter(e) {
         div.setAttribute('tabIndex', tabCounter);
         div.id = 'choice';
         div.textContent = choices[id];
+
+        domElements.filterChoices.appendChild(separation);
         domElements.filterChoices.appendChild(div);
         tabCounter++;
       }
     });
     return;
   }
+
   if (choices.includes(e.target.textContent) && e.key !== 'Tab') {
     document.querySelectorAll('#choice').forEach((choice) => {
       choice.style.animationName = 'disappear-animate';
     });
+
     domElements.filterIcon?.classList.remove('open');
+    domElements.theChoice.innerHTML = e.target.textContent;
+
+    const allImages = document.querySelector('.images');
+    allImages.remove();
+    const photographerModel = photographerPage(photographer, images);
+    const getAllImages = photographerModel.getAllImages();
+
+    domElements.filter?.after(getAllImages);
+
     setTimeout(() => {
       while (domElements.filterChoices?.children.length > 1)
         domElements.filterChoices?.children[1].remove();
     }, 200);
-    domElements.theChoice.innerHTML = e.target.textContent;
     return;
   }
 }

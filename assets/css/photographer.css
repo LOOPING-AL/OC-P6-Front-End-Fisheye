@@ -81,7 +81,6 @@
 .modal header h2 {
   font-size: 64px;
   font-weight: normal;
-  text-align: center;
 }
 
 form {
@@ -112,6 +111,20 @@ textarea {
   border: none;
   border-radius: 5px;
   font-size: 30px;
+}
+form textarea {
+  height: 170px;
+}
+.error-message {
+  font-size: 18px;
+  font-weight: 400;
+}
+[aria-invalid='true'] {
+  outline: 2px solid red;
+}
+[aria-invalid='true'] ~ .error-message {
+  opacity: 1;
+  visibility: visible;
 }
 
 .filter {
