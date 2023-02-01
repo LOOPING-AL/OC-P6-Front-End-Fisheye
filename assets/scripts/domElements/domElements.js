@@ -1,4 +1,4 @@
-export const domElements = {
+const domElements = {
   photographersSection: document.querySelector(".photographer_section"),
   contact_button: document.querySelector(".contact_button"),
   close: document.getElementById("close"),
@@ -12,3 +12,5 @@ export const domElements = {
   theChoice: document.querySelector(".theChoice"),
   test: document.querySelectorAll("#test"),
 };
+
+export default domElements;

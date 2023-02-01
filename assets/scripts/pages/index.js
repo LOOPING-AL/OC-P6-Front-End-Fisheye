@@ -1,5 +1,5 @@
+import domElements from "../domElements/domElements.js";
 import { photographerFactory } from "../factories/photographer.js";
-import { domElements } from "../domElements/domElements.js";
 import { getPhotographers } from "../factories/query.js";
 
 async function displayData(photographers) {

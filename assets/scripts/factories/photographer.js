@@ -14,7 +14,7 @@ export function photographerFactory(data, i) {
     const link = document.createElement("a");
     link.setAttribute("tabindex", i);
     const params = new URLSearchParams({ id: id });
-    link.href = `assets/pages/photographer.html?` + params;
+    link.href = `/pages/photographer.html?` + params;
     const h3 = document.createElement("h3");
     h3.textContent = `${city}, ${country}`;
     const h4 = document.createElement("h4");

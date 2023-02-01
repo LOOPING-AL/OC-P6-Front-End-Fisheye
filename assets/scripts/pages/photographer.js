@@ -1,6 +1,6 @@
 import { closeModal, displayModal } from "../utils/contactForm.js";
 import { photographerPage } from "../factories/photographer.js";
-import { domElements } from "../domElements/domElements.js";
+import domElements from "../domElements/domElements.js";
 import { useFilter } from "../utils/filter.js";
 import { getPhotographer, getPhotographerSImages } from "../factories/query.js";
 
@@ -13,6 +13,7 @@ async function displayData(photographer) {
   const { images } = await getPhotographerSImages(photographer);
   const photographerModel = photographerPage(photographer, images);
   const getHeaderLeft = photographerModel.getHeaderLeft();
+
   domElements.contact_button?.parentNode.insertBefore(
     getHeaderLeft,
     domElements.contact_button

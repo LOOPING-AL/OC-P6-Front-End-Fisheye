@@ -1,7 +1,6 @@
-import { domElements } from "../domElements/domElements.js";
+import domElements from "../domElements/domElements.js";
 
 export function useFilter(e) {
-  console.log(e);
   domElements.theChoice.focus();
   const choices = ["Popularité", "Date", "Titre"];
   if (
