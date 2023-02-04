@@ -42,6 +42,7 @@ async function init() {
   const getHeaderLeft = photographerModel.getHeaderLeft();
   const getHeaderRight = photographerModel.getHeaderRight();
   const getAllImages = photographerModel.getAllImages();
+  photographerModel.getStickyInfo();
 
   domElements.title.innerHTML = 'Fisheye - ' + name;
   domElements.modalTitle.innerHTML = `${domElements.modalTitle.innerHTML} ${name}`;

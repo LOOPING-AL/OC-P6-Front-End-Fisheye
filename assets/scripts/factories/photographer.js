@@ -93,13 +93,23 @@ export function photographerPage(photographer, images) {
 
     newImagesSort.forEach((image) => {
       const article = document.createElement('article');
-      const photographSImage = `../../assets/images/SamplePhotos/${first}/${
+      const src = `../../assets/images/SamplePhotos/${first}/${
         image.image ? image.image : image.video
       }`;
-      const img = document.createElement('img');
-      img.setAttribute('src', photographSImage);
-      img.setAttribute('alt', image.title);
+      let img;
+      if (image.image) {
+        img = document.createElement('img');
+        img.setAttribute('src', src);
+        img.setAttribute('alt', image.title);
+      } else if (image.video) {
+        img = document.createElement('video');
+        const source = document.createElement('source');
+        source.setAttribute('src', src);
+        source.setAttribute('alt', image.title);
+        img.appendChild(source);
+      }
       img.setAttribute('tabindex', tabCounter);
+      img.classList = 'photographImage';
 
       const div = document.createElement('div');
       const title = document.createElement('h5');
@@ -128,5 +138,20 @@ export function photographerPage(photographer, images) {
     return render;
   }
 
-  return { getPhotographerName, getHeaderLeft, getHeaderRight, getAllImages };
+  function getStickyInfo() {
+    let likes = 0;
+    images.forEach((image) => {
+      likes += image.likes;
+    });
+    console.log(domElements.stickyInfoFirst);
+    domElements.stickyInfoFirst.innerHTML = likes;
+  }
+
+  return {
+    getPhotographerName,
+    getHeaderLeft,
+    getHeaderRight,
+    getAllImages,
+    getStickyInfo,
+  };
 }

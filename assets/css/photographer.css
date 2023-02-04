@@ -1,6 +1,6 @@
 #contact_modal {
   display: none;
-  position: fixed;
+  position: absolute;
   top: 70px;
   left: 0;
   right: 0;
@@ -41,6 +41,7 @@
 
 .contact_button {
   font-size: 20px;
+  font-weight: 700;
   font-weight: bold;
   color: white;
   padding: 11px;
@@ -50,12 +51,13 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
-  transition: scale 0.2s, background-color 0.1s ease-out;
+  transition: scale 0.2s, color 0.2s, background-color 0.1s ease-out;
 }
 .contact_button:hover,
 .filter-choices:hover {
   scale: 1.02;
   background-color: #db8876;
+  color: black;
 }
 
 .modal {
@@ -132,6 +134,7 @@ form textarea {
   flex-direction: row;
   align-items: flex-start;
   margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .filter h3 {
@@ -140,6 +143,8 @@ form textarea {
 }
 
 .filter-choices {
+  position: absolute;
+  left: 200px;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 6px;
@@ -220,7 +225,8 @@ article {
   width: 28%;
 }
 
-article img {
+article img,
+article video {
   height: 300px;
   width: 100%;
   border-radius: 5px;
@@ -245,4 +251,24 @@ article h5 {
   margin-left: 6px;
   height: 18.35px;
   width: 17.5px;
+}
+.stickyInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 380px;
+  height: 50px;
+  position: fixed;
+  right: 36px;
+  bottom: 0;
+  background: #db8876;
+  border-radius: 5px 5px 0 0;
+  font-family: DM Sans;
+  font-size: 24px;
+  font-weight: 500;
+}
+.stickyInfo img {
+  height: 18;
+  width: 17.5px;
+
 }

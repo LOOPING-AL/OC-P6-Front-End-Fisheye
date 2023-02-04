@@ -21,6 +21,9 @@ const domElements = {
   formErrorMessageEmail: document.querySelector('#erremail'),
   formInputMessage: document.querySelector('#message'),
   formErrorMessageMessage: document.querySelector('#errmessage'),
+  stickyInfo: document.querySelector('.stickyInfo'),
+  stickyInfoFirst: document.querySelector('.stickyInfo-first'),
+  stickyInfoAllLikes: document.querySelector('.allLikes'),
 };
 
 export default domElements;
