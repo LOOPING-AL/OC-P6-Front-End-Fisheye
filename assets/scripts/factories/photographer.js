@@ -76,7 +76,7 @@ export function photographerPage(photographer, images) {
 
   function getAllImages() {
     const first = name.substring(0, name.lastIndexOf(' '));
-    images.sort(sortByFilter);
+    const newImagesSort = images.sort(sortByFilter);
     function sortByFilter(a, b) {
       const theChoice = domElements.theChoice.innerHTML;
       if (theChoice === 'Popularité') {
@@ -86,12 +86,12 @@ export function photographerPage(photographer, images) {
       } else return b.title < a.title ? 1 : -1;
     }
 
-    // console.log(domElements.allImages !== null);
     const render = document.createElement('div');
     render.classList = 'images';
 
     let tabCounter = 5;
-    images.forEach((image) => {
+
+    newImagesSort.forEach((image) => {
       const article = document.createElement('article');
       const photographSImage = `../../assets/images/SamplePhotos/${first}/${
         image.image ? image.image : image.video

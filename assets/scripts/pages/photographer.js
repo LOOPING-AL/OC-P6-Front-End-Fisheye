@@ -10,9 +10,17 @@ import {
   testMessage,
 } from '../utils/checkForm.js';
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const id = urlParams.get('id');
+const { photographer } = await getPhotographer(id);
+const { images } = await getPhotographerSImages(photographer);
+
 domElements.close.addEventListener('click', () => closeModal());
 domElements.open.addEventListener('click', () => displayModal());
-domElements.filterChoices.addEventListener('click', (e) => useFilter(e));
+domElements.filterChoices.addEventListener('click', (e) =>
+  useFilter(e, photographer, images)
+);
 domElements.filterChoices.addEventListener('keydown', (e) => useFilter(e));
 domElements.form.addEventListener('submit', (e) => validate(e));
 domElements.formInputFirst?.addEventListener('focusout', () =>
@@ -28,8 +36,7 @@ domElements.formInputMessage?.addEventListener('focusout', () =>
   testMessage(domElements.formInputMessage, domElements.formErrorMessageMessage)
 );
 
-async function displayData(photographer) {
-  const { images } = await getPhotographerSImages(photographer);
+async function init() {
   const photographerModel = photographerPage(photographer, images);
   const name = photographerModel.getPhotographerName();
   const getHeaderLeft = photographerModel.getHeaderLeft();
@@ -44,16 +51,6 @@ async function displayData(photographer) {
   );
   domElements.contact_button?.after(getHeaderRight);
   domElements.filter?.after(getAllImages);
-}
-
-async function init() {
-  // Récupère les datas du photographe
-
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const id = urlParams.get('id');
-  const { photographer } = await getPhotographer(id);
-  displayData(photographer);
 }
 
 init();

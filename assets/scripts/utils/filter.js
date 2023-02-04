@@ -1,8 +1,7 @@
 import domElements from '../domElements.js';
 import { photographerPage } from '../factories/photographer.js';
 
-export function useFilter(e, photographer) {
-  domElements.theChoice.focus();
+export function useFilter(e, photographer, images) {
   const choices = ['Popularité', 'Date', 'Titre'];
   if (
     domElements.filterChoices?.childElementCount === 1 &&
@@ -34,19 +33,19 @@ export function useFilter(e, photographer) {
   }
 
   if (choices.includes(e.target.textContent) && e.key !== 'Tab') {
-    document.querySelectorAll('#choice').forEach((choice) => {
-      choice.style.animationName = 'disappear-animate';
-    });
-
     domElements.filterIcon?.classList.remove('open');
     domElements.theChoice.innerHTML = e.target.textContent;
 
     const allImages = document.querySelector('.images');
     allImages.remove();
+
     const photographerModel = photographerPage(photographer, images);
     const getAllImages = photographerModel.getAllImages();
-
     domElements.filter?.after(getAllImages);
+
+    document.querySelectorAll('#choice').forEach((choice) => {
+      choice.style.animationName = 'disappear-animate';
+    });
 
     setTimeout(() => {
       while (domElements.filterChoices?.children.length > 1)
