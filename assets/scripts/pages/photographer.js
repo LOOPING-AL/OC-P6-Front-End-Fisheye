@@ -1,20 +1,15 @@
 import domElements from '../domElements.js';
 import { photographerPage } from '../factories/photographer.js';
-import { getPhotographer, getPhotographerSImages } from '../factories/query.js';
+import { getPhotographer, getPhotographersImages } from '../factories/query.js';
+import { testEmail, testMessage, testName, validate } from '../utils/checkForm.js';
 import { closeModal, displayModal } from '../utils/contactForm.js';
-import { useFilter } from '../utils/filter.js';
-import {
-  validate,
-  testName,
-  testEmail,
-  testMessage,
-} from '../utils/checkForm.js';
+import useFilter from '../utils/filter.js';
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get('id');
 const { photographer } = await getPhotographer(id);
-const { images } = await getPhotographerSImages(photographer);
+const { images } = await getPhotographersImages(photographer);
 
 domElements.close.addEventListener('click', () => closeModal());
 domElements.open.addEventListener('click', () => displayModal());
@@ -44,7 +39,7 @@ async function init() {
   const getAllImages = photographerModel.getAllImages();
   photographerModel.getStickyInfo();
 
-  domElements.title.innerHTML = 'Fisheye - ' + name;
+  domElements.title.innerHTML = `Fisheye - ${name}`;
   domElements.modalTitle.innerHTML = `${domElements.modalTitle.innerHTML} ${name}`;
   domElements.contact_button?.parentNode.insertBefore(
     getHeaderLeft,

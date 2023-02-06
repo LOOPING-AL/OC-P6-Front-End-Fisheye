@@ -5,7 +5,7 @@ import { getPhotographers } from '../factories/query.js';
 async function displayData(photographers) {
   let i = 1;
   photographers.forEach((photographer) => {
-    i++;
+    i = +i;
     const photographerModel = photographerFactory(photographer, i);
     const userCardDOM = photographerModel.getUserCardDOM();
 

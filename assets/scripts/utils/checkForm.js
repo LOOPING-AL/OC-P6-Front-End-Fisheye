@@ -8,39 +8,11 @@ function reinitialisation() {
   domElements.formInputEmail.value = '';
   domElements.formInputMessage.value = '';
 }
-
-export function validate(event) {
-  if (testAllInput()) {
-    reinitialisation();
+function isEmpty(formInput, formErrorMessage) {
+  if (formInput.value === '') {
+    formInput.setAttribute('aria-invalid', true);
+    formErrorMessage.innerHTML = 'Le champs est obligatoire.';
   }
-  event.preventDefault();
-}
-
-function testAllInput() {
-  let allTestIsGood = true;
-  if (
-    !testName(domElements.formInputFirst, domElements.formErrorMessageFirst)
-  ) {
-    allTestIsGood = false;
-  }
-  if (!testName(domElements.formInputLast, domElements.formErrorMessageLast)) {
-    allTestIsGood = false;
-  }
-  if (
-    !testEmail(domElements.formInputEmail, domElements.formErrorMessageEmail)
-  ) {
-    allTestIsGood = false;
-  }
-  if (
-    !testMessage(
-      domElements.formInputMessage,
-      domElements.formErrorMessageMessage
-    )
-  ) {
-    allTestIsGood = false;
-  }
-
-  return allTestIsGood;
 }
 
 export function testName(formInput, formErrorMessage) {
@@ -51,13 +23,13 @@ export function testName(formInput, formErrorMessage) {
     message = 'Veuillez entrer';
     formInput.setAttribute('aria-invalid', true);
     if (!/^[A-ZÀ-Þ]+/g.test(formInput.value)) {
-      message = message + ', une majuscule pour commencer';
+      message += ', une majuscule pour commencer';
     }
     if (!/.{2,}/g.test(formInput.value)) {
-      message = message + ', 2 caractères ou plus';
+      message += ', 2 caractères ou plus';
     }
     if (/[^A-ZÀ-Þ-a-z '-]/g.test(formInput.value)) {
-      message = message + ", que ces caractères spéciaux ('-)";
+      message += ", que ces caractères spéciaux ('-)";
     }
     message += ' pour ce champ.';
   }
@@ -92,9 +64,36 @@ export function testMessage(formInput, formErrorMessage) {
   return false;
 }
 
-function isEmpty(formInput, formErrorMessage) {
-  if (formInput.value === '') {
-    formInput.setAttribute('aria-invalid', true);
-    formErrorMessage.innerHTML = 'Le champs est obligatoire.';
+function testAllInput() {
+  let allTestIsGood = true;
+  if (
+    !testName(domElements.formInputFirst, domElements.formErrorMessageFirst)
+  ) {
+    allTestIsGood = false;
   }
+  if (!testName(domElements.formInputLast, domElements.formErrorMessageLast)) {
+    allTestIsGood = false;
+  }
+  if (
+    !testEmail(domElements.formInputEmail, domElements.formErrorMessageEmail)
+  ) {
+    allTestIsGood = false;
+  }
+  if (
+    !testMessage(
+      domElements.formInputMessage,
+      domElements.formErrorMessageMessage
+    )
+  ) {
+    allTestIsGood = false;
+  }
+
+  return allTestIsGood;
+}
+
+export function validate(event) {
+  if (testAllInput()) {
+    reinitialisation();
+  }
+  event.preventDefault();
 }

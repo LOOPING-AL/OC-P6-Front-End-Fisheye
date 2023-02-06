@@ -222,7 +222,7 @@ article {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 28%;
+  width: 100%;
 }
 
 article img,
@@ -270,5 +270,4 @@ article h5 {
 .stickyInfo img {
   height: 18;
   width: 17.5px;
-
 }

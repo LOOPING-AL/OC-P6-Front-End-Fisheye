@@ -1,7 +1,7 @@
 import domElements from '../domElements.js';
 import { photographerPage } from '../factories/photographer.js';
 
-export function useFilter(e, photographer, images) {
+function useFilter(e, photographer, images) {
   const choices = ['Popularité', 'Date', 'Titre'];
   if (
     domElements.filterChoices?.childElementCount === 1 &&
@@ -26,7 +26,7 @@ export function useFilter(e, photographer, images) {
 
         domElements.filterChoices.appendChild(separation);
         domElements.filterChoices.appendChild(div);
-        tabCounter++;
+        tabCounter += 1;
       }
     });
     return;
@@ -51,6 +51,6 @@ export function useFilter(e, photographer, images) {
       while (domElements.filterChoices?.children.length > 1)
         domElements.filterChoices?.children[1].remove();
     }, 200);
-    return;
   }
 }
+export default useFilter;

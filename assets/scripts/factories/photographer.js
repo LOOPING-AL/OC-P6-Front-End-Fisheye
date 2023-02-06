@@ -18,7 +18,7 @@ export function photographerFactory(data, i) {
     const link = document.createElement('a');
     link.setAttribute('tabindex', i);
     const params = new URLSearchParams({ id: id });
-    link.href = `/pages/photographer.html?` + params;
+    link.href = `/pages/photographer.html?${params}`;
 
     const h3 = document.createElement('h3');
     h3.textContent = `${city}, ${country}`;
@@ -41,7 +41,7 @@ export function photographerFactory(data, i) {
 }
 
 export function photographerPage(photographer, images) {
-  const { name, portrait, city, country, tagline, price, id } = photographer;
+  const { name, portrait, city, country, tagline } = photographer;
 
   const picturePhotograph = `../../assets/images/SamplePhotos/PhotographersID/${portrait}`;
 
@@ -76,15 +76,17 @@ export function photographerPage(photographer, images) {
 
   function getAllImages() {
     const first = name.substring(0, name.lastIndexOf(' '));
-    const newImagesSort = images.sort(sortByFilter);
     function sortByFilter(a, b) {
       const theChoice = domElements.theChoice.innerHTML;
       if (theChoice === 'Popularité') {
         return a.likes < b.likes ? 1 : -1;
-      } else if (theChoice === 'Date') {
+      }
+      if (theChoice === 'Date') {
         return b.date < a.date ? 1 : -1;
-      } else return b.title < a.title ? 1 : -1;
+      }
+      return b.title < a.title ? 1 : -1;
     }
+    const newImagesSort = images.sort(sortByFilter);
 
     const render = document.createElement('div');
     render.classList = 'images';
@@ -133,7 +135,7 @@ export function photographerPage(photographer, images) {
       article.appendChild(img);
       article.appendChild(div);
       render.appendChild(article);
-      tabCounter++;
+      tabCounter += 1;
     });
     return render;
   }
@@ -143,8 +145,7 @@ export function photographerPage(photographer, images) {
     images.forEach((image) => {
       likes += image.likes;
     });
-    console.log(domElements.stickyInfoFirst);
-    domElements.stickyInfoFirst.innerHTML = likes;
+    domElements.stickyInfoFirst.innerHTML = likes.toString();
   }
 
   return {

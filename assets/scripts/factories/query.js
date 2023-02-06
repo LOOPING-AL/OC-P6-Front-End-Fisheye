@@ -16,7 +16,7 @@ export async function getPhotographer(id) {
     .then((response) => response.json())
     .then((data) => {
       photographer = data.photographers.find(
-        (photographer) => photographer.id === parseInt(id)
+        (photograph) => photograph.id === parseInt(id, 10)
       );
     });
   return {
@@ -24,7 +24,7 @@ export async function getPhotographer(id) {
   };
 }
 
-export async function getPhotographerSImages(photographer) {
+export async function getPhotographersImages(photographer) {
   let images;
   await fetch('../../assets/data/photographers.json')
     .then((response) => response.json())
