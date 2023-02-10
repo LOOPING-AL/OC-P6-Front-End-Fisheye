@@ -1,8 +1,8 @@
-import domElements from '../domElements.js';
-import { photographerPage } from '../factories/photographer.js';
+import domElements from '../dom-elements.js';
 
-function useFilter(e, photographer, images) {
+function useFilter(e) {
   const choices = ['Popularité', 'Date', 'Titre'];
+
   if (
     domElements.filterChoices?.childElementCount === 1 &&
     (e.type === 'click' || e.key === 'Enter')
@@ -29,6 +29,7 @@ function useFilter(e, photographer, images) {
         tabCounter += 1;
       }
     });
+
     return;
   }
 
@@ -36,15 +37,38 @@ function useFilter(e, photographer, images) {
     domElements.filterIcon?.classList.remove('open');
     domElements.theChoice.innerHTML = e.target.textContent;
 
-    const allImages = document.querySelector('.images');
-    allImages.remove();
+    const images = document.querySelector('.images');
+    const allImages = images.childNodes;
 
-    const photographerModel = photographerPage(photographer, images);
-    const getAllImages = photographerModel.getAllImages();
-    domElements.filter?.after(getAllImages);
+    const imagesArr = [];
+    allImages.forEach((image) => {
+      if (image.nodeType === 1) {
+        imagesArr.push(image);
+      }
+    });
+
+    imagesArr.sort((a, b) => {
+      const theChoice = domElements.theChoice.innerHTML;
+      if (theChoice === 'Popularité') {
+        return Number(b.childNodes[1].childNodes[1].innerText) >
+          Number(a.childNodes[1].childNodes[1].innerText)
+          ? 1
+          : -1;
+      }
+      if (theChoice === 'Date') {
+        return b.dataset.date < a.dataset.date ? 1 : -1;
+      }
+      return a.childNodes[0].attributes.alt.value >
+        b.childNodes[0].attributes.alt.value
+        ? 1
+        : -1;
+    });
+
+    imagesArr.forEach((image) => images.appendChild(image));
 
     document.querySelectorAll('#choice').forEach((choice) => {
-      choice.style.animationName = 'disappear-animate';
+      const thisChoice = choice;
+      thisChoice.style.animationName = 'disappear-animate';
     });
 
     setTimeout(() => {
@@ -53,4 +77,5 @@ function useFilter(e, photographer, images) {
     }, 200);
   }
 }
+
 export default useFilter;

@@ -1,5 +1,5 @@
-import domElements from '../domElements.js';
-import { closeModal } from './contactForm.js';
+import domElements from '../dom-elements.js';
+import { closeModal } from './contact-form.js';
 
 function reinitialisation() {
   closeModal();
@@ -8,17 +8,22 @@ function reinitialisation() {
   domElements.formInputEmail.value = '';
   domElements.formInputMessage.value = '';
 }
+
 function isEmpty(formInput, formErrorMessage) {
+  const thisFormErrorMessageTest = formErrorMessage;
+
   if (formInput.value === '') {
     formInput.setAttribute('aria-invalid', true);
-    formErrorMessage.innerHTML = 'Le champs est obligatoire.';
+    thisFormErrorMessageTest.innerHTML = 'Le champs est obligatoire.';
   }
 }
 
 export function testName(formInput, formErrorMessage) {
   let message = '';
+  const thisFormErrorMessageTest = formErrorMessage;
 
   formInput.setAttribute('aria-invalid', false);
+
   if (!/(^[A-ZÀ-Þ][A-ZÀ-Þa-z '-]{1,})+/g.test(formInput.value)) {
     message = 'Veuillez entrer';
     formInput.setAttribute('aria-invalid', true);
@@ -33,8 +38,10 @@ export function testName(formInput, formErrorMessage) {
     }
     message += ' pour ce champ.';
   }
-  formErrorMessage.innerHTML = message;
+
+  thisFormErrorMessageTest.innerHTML = message;
   isEmpty(formInput, formErrorMessage);
+
   if (formInput.getAttribute('aria-invalid') === 'false') {
     return true;
   }
@@ -43,13 +50,18 @@ export function testName(formInput, formErrorMessage) {
 
 export function testEmail(formInput, formErrorMessage) {
   let message = '';
+  const thisFormErrorMessageTest = formErrorMessage;
+
   formInput.setAttribute('aria-invalid', false);
-  if (!/^[\w-\.]+@([\w-+]+\.)+[\w-]{2,4}$/g.test(formInput.value)) {
+
+  if (!/^[\w-.]+@([\w-+]+\.)+[\w-]{2,4}$/g.test(formInput.value)) {
     formInput.setAttribute('aria-invalid', true);
     message = "L'adresse mail n'est pas correct elle doit suivre `abc@abc.abc`";
   }
-  formErrorMessage.innerHTML = message;
+
+  thisFormErrorMessageTest.innerHTML = message;
   isEmpty(formInput, formErrorMessage);
+
   if (formInput.getAttribute('aria-invalid') === 'false') {
     return true;
   }
@@ -57,7 +69,13 @@ export function testEmail(formInput, formErrorMessage) {
 }
 
 export function testMessage(formInput, formErrorMessage) {
+  const message = '';
+  const thisFormErrorMessageTest = formErrorMessage;
+
+  formInput.setAttribute('aria-invalid', false);
   isEmpty(formInput, formErrorMessage);
+  thisFormErrorMessageTest.innerHTML = message;
+
   if (formInput.getAttribute('aria-invalid') === 'false') {
     return true;
   }
@@ -66,6 +84,7 @@ export function testMessage(formInput, formErrorMessage) {
 
 function testAllInput() {
   let allTestIsGood = true;
+
   if (
     !testName(domElements.formInputFirst, domElements.formErrorMessageFirst)
   ) {
@@ -93,7 +112,16 @@ function testAllInput() {
 
 export function validate(event) {
   if (testAllInput()) {
+    // eslint-disable-next-line no-console
+    console.log({
+      firstName: domElements.formInputFirst.value,
+      lastName: domElements.formInputLast.value,
+      email: domElements.formInputEmail.value,
+      message: domElements.formInputMessage.value,
+    });
+
     reinitialisation();
   }
+
   event.preventDefault();
 }

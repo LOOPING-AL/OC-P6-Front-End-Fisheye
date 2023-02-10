@@ -1,7 +1,7 @@
 #contact_modal {
   display: none;
   position: absolute;
-  top: 70px;
+  top: 20px;
   left: 0;
   right: 0;
   margin: auto;
@@ -39,7 +39,7 @@
   object-fit: cover;
 }
 
-.contact_button {
+.button {
   font-size: 20px;
   font-weight: 700;
   font-weight: bold;
@@ -51,10 +51,13 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.contact_button {
   transition: scale 0.2s, color 0.2s, background-color 0.1s ease-out;
 }
-.contact_button:hover,
-.filter-choices:hover {
+
+.contact_button:hover {
   scale: 1.02;
   background-color: #db8876;
   color: black;
@@ -222,7 +225,7 @@ article {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: 28%;
 }
 
 article img,
@@ -254,9 +257,9 @@ article h5 {
 }
 .stickyInfo {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 380px;
+  width: 350px;
   height: 50px;
   position: fixed;
   right: 36px;
@@ -270,4 +273,11 @@ article h5 {
 .stickyInfo img {
   height: 18;
   width: 17.5px;
+}
+
+.stickyInfoInside {
+  display: flex;
+  gap: 8px;
+  padding-left: 35px;
+  padding-right: 35px;
 }

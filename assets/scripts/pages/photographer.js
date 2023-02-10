@@ -1,8 +1,16 @@
-import domElements from '../domElements.js';
+import domElements from '../dom-elements.js';
+import {
+  getPhotographer,
+  getPhotographersImages,
+} from '../factories/api-client.js';
 import { photographerPage } from '../factories/photographer.js';
-import { getPhotographer, getPhotographersImages } from '../factories/query.js';
-import { testEmail, testMessage, testName, validate } from '../utils/checkForm.js';
-import { closeModal, displayModal } from '../utils/contactForm.js';
+import {
+  testEmail,
+  testMessage,
+  testName,
+  validate,
+} from '../utils/check-form.js';
+import { closeModal, displayModal } from '../utils/contact-form.js';
 import useFilter from '../utils/filter.js';
 
 const queryString = window.location.search;

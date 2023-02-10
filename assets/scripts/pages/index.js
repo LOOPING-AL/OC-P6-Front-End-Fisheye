@@ -1,9 +1,10 @@
-import domElements from '../domElements.js';
+import domElements from '../dom-elements.js';
+import { getPhotographers } from '../factories/api-client.js';
 import { photographerFactory } from '../factories/photographer.js';
-import { getPhotographers } from '../factories/query.js';
 
 async function displayData(photographers) {
   let i = 1;
+
   photographers.forEach((photographer) => {
     i = +i;
     const photographerModel = photographerFactory(photographer, i);

@@ -38,6 +38,7 @@ h5 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
+  align-items: flex-start;
 }
 
 .photographer_section article {

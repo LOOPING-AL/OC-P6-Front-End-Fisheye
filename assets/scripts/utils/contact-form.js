@@ -1,4 +1,4 @@
-import domElements from '../domElements.js';
+import domElements from '../dom-elements.js';
 
 export function displayModal() {
   domElements.modal.style.display = 'block';
