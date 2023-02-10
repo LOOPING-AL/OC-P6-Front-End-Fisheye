@@ -93,9 +93,6 @@ export function photographerPage(photographer, images) {
     }
     const newImagesSort = images.sort(sortByFilter);
 
-    const render = document.createElement('div');
-    render.classList = 'images';
-
     let tabCounter = 5;
 
     newImagesSort.forEach((image) => {
@@ -143,11 +140,9 @@ export function photographerPage(photographer, images) {
       div.appendChild(divLikes);
       article.appendChild(img);
       article.appendChild(div);
-      render.appendChild(article);
+      domElements.images.appendChild(article);
       tabCounter += 1;
     });
-
-    return render;
   }
 
   function getStickyInfo() {
@@ -157,6 +152,7 @@ export function photographerPage(photographer, images) {
       likes += image.likes;
     });
     const divLikes = document.createElement('div');
+    divLikes.id = 'numberOfLikes';
     divLikes.textContent = likes;
     domElements.stickyInfoAllLikes?.parentNode.insertBefore(
       divLikes,
@@ -178,4 +174,25 @@ export function photographerPage(photographer, images) {
     getAllImages,
     getStickyInfo,
   };
+}
+
+export function clickOnImages(e) {
+  if (e.target.className === 'photographImage') console.log(e);
+
+  if (e.target.className.includes('like')) {
+    const likes = e.target.parentElement.childNodes[0];
+    const allLikes = document.getElementById('numberOfLikes');
+
+    if (likes.getAttribute('increment') === 'true') {
+      allLikes.textContent = Number(allLikes.textContent) - 1;
+      e.target.classList.remove('like-show');
+      likes.textContent = Number(e.target.parentElement.innerText) - 1;
+      likes.setAttribute('increment', false);
+      return;
+    }
+    allLikes.textContent = Number(allLikes.textContent) + 1;
+    likes.setAttribute('increment', true);
+    likes.textContent = Number(e.target.parentElement.innerText) + 1;
+    e.target.classList.add('like-show');
+  }
 }

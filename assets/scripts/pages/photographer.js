@@ -3,7 +3,7 @@ import {
   getPhotographer,
   getPhotographersImages,
 } from '../factories/api-client.js';
-import { photographerPage } from '../factories/photographer.js';
+import { photographerPage, clickOnImages } from '../factories/photographer.js';
 import {
   testEmail,
   testMessage,
@@ -38,13 +38,14 @@ domElements.formInputEmail.addEventListener('focusout', () =>
 domElements.formInputMessage?.addEventListener('focusout', () =>
   testMessage(domElements.formInputMessage, domElements.formErrorMessageMessage)
 );
+domElements.images.addEventListener('click', (e) => clickOnImages(e));
 
 async function init() {
   const photographerModel = photographerPage(photographer, images);
   const name = photographerModel.getPhotographerName();
   const getHeaderLeft = photographerModel.getHeaderLeft();
   const getHeaderRight = photographerModel.getHeaderRight();
-  const getAllImages = photographerModel.getAllImages();
+  photographerModel.getAllImages();
   photographerModel.getStickyInfo();
 
   domElements.title.innerHTML = `Fisheye - ${name}`;
@@ -54,7 +55,6 @@ async function init() {
     domElements.contact_button
   );
   domElements.contact_button?.after(getHeaderRight);
-  domElements.filter?.after(getAllImages);
 }
 
 init();

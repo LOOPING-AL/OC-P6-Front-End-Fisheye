@@ -255,6 +255,11 @@ article h5 {
   height: 18.35px;
   width: 17.5px;
 }
+.like-show {
+  filter: drop-shadow(-1px -1px 0px #3e68ff) drop-shadow(1px -1px 0px #3e68ff)
+    drop-shadow(1px 1px 0px #3e68ff) drop-shadow(-1px 1px 0px #3e68ff);
+}
+
 .stickyInfo {
   display: flex;
   justify-content: space-between;

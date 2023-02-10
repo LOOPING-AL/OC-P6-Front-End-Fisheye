@@ -21,6 +21,7 @@ const domElements = {
   formErrorMessageEmail: document.querySelector('#erremail'),
   formInputMessage: document.querySelector('#message'),
   formErrorMessageMessage: document.querySelector('#errmessage'),
+  images: document.querySelector('.images'),
   stickyInfo: document.querySelector('.stickyInfo'),
   stickyInfoAllLikes: document.querySelector('.allLikes'),
   stickyInfoPrice: document.querySelector('.price'),
