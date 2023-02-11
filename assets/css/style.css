@@ -78,3 +78,51 @@ h5 {
   object-fit: cover;
   border-radius: 50%;
 }
+
+.lightBox {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+}
+.lightBox-top {
+  display: flex;
+  justify-content: flex-end;
+  margin: 50px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.lightBox-close {
+  width: 42px;
+}
+
+.lightBox-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lightBox-media {
+  object-fit: cover;
+  max-height: 80%;
+  max-width: 80%;
+}
+.lightBox-video {
+  display: none;
+}
+.lightBox-img {
+  display: block;
+}
+.lightBox-direction {
+  padding: 50px;
+}

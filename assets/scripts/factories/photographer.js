@@ -1,4 +1,5 @@
 import domElements from '../dom-elements.js';
+import { getVideoOrImgInLightBox } from '../utils/light-box.js';
 
 export function photographerFactory(data, i) {
   const { name, portrait, city, country, tagline, price, id } = data;
@@ -177,8 +178,10 @@ export function photographerPage(photographer, images) {
 }
 
 export function clickOnImages(e) {
-  if (e.target.className === 'photographImage') console.log(e);
-
+  if (e.target.className === 'photographImage') {
+    domElements.lightBox.style.display = 'flex';
+    getVideoOrImgInLightBox(e.srcElement.currentSrc);
+  }
   if (e.target.className.includes('like')) {
     const likes = e.target.parentElement.childNodes[0];
     const allLikes = document.getElementById('numberOfLikes');

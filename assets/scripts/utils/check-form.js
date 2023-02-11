@@ -1,8 +1,8 @@
 import domElements from '../dom-elements.js';
-import { closeModal } from './contact-form.js';
+import { closeModalForm } from './modalDialog.js';
 
 function reinitialisation() {
-  closeModal();
+  closeModalForm();
   domElements.formInputFirst.value = '';
   domElements.formInputLast.value = '';
   domElements.formInputEmail.value = '';

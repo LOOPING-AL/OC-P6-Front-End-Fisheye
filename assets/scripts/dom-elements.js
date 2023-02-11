@@ -25,6 +25,11 @@ const domElements = {
   stickyInfo: document.querySelector('.stickyInfo'),
   stickyInfoAllLikes: document.querySelector('.allLikes'),
   stickyInfoPrice: document.querySelector('.price'),
+  lightBox: document.querySelector('.lightBox'),
+  lightBoxImg: document.querySelector('.lightBox-img'),
+  lightBoxVideo: document.querySelector('.lightBox-video'),
+  lightBoxClose: document.querySelector('.lightBox-close'),
+  lightBoxDirection: document.querySelectorAll('.lightBox-direction'),
 };
 
 export default domElements;

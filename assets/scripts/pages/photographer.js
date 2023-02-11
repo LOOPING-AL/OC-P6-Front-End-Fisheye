@@ -3,15 +3,20 @@ import {
   getPhotographer,
   getPhotographersImages,
 } from '../factories/api-client.js';
-import { photographerPage, clickOnImages } from '../factories/photographer.js';
+import { clickOnImages, photographerPage } from '../factories/photographer.js';
 import {
   testEmail,
   testMessage,
   testName,
   validate,
 } from '../utils/check-form.js';
-import { closeModal, displayModal } from '../utils/contact-form.js';
 import useFilter from '../utils/filter.js';
+import { lightBoxNavigation } from '../utils/light-box.js';
+import {
+  closeDialogLightox,
+  closeModalForm,
+  displayModalForm,
+} from '../utils/modalDialog.js';
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -19,8 +24,8 @@ const id = urlParams.get('id');
 const { photographer } = await getPhotographer(id);
 const { images } = await getPhotographersImages(photographer);
 
-domElements.close.addEventListener('click', () => closeModal());
-domElements.open.addEventListener('click', () => displayModal());
+domElements.close.addEventListener('click', () => closeModalForm());
+domElements.open.addEventListener('click', () => displayModalForm());
 domElements.filterChoices.addEventListener('click', (e) =>
   useFilter(e, photographer, images)
 );
@@ -39,6 +44,11 @@ domElements.formInputMessage?.addEventListener('focusout', () =>
   testMessage(domElements.formInputMessage, domElements.formErrorMessageMessage)
 );
 domElements.images.addEventListener('click', (e) => clickOnImages(e));
+domElements.lightBoxClose.addEventListener('click', () => closeDialogLightox());
+
+domElements.lightBoxDirection.forEach((direction) => {
+  direction.addEventListener('click', (e) => lightBoxNavigation(e));
+});
 
 async function init() {
   const photographerModel = photographerPage(photographer, images);
