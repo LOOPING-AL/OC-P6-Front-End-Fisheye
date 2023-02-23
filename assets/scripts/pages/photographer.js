@@ -30,6 +30,9 @@ domElements.filterChoices.addEventListener('click', (e) =>
   useFilter(e, photographer, images)
 );
 domElements.filterChoices.addEventListener('keydown', (e) => useFilter(e));
+domElements.filterChoices.addEventListener('Escape', (e) => useFilter(e));
+domElements.filter.addEventListener('focusout', (e) => useFilter(e));
+
 domElements.form.addEventListener('submit', (e) => validate(e));
 domElements.formInputFirst?.addEventListener('focusout', () =>
   testName(domElements.formInputFirst, domElements.formErrorMessageFirst)
@@ -43,12 +46,16 @@ domElements.formInputEmail.addEventListener('focusout', () =>
 domElements.formInputMessage?.addEventListener('focusout', () =>
   testMessage(domElements.formInputMessage, domElements.formErrorMessageMessage)
 );
+
 domElements.images.addEventListener('click', (e) => clickOnImages(e));
+domElements.images.addEventListener('keydown', (e) => clickOnImages(e));
+
 domElements.lightBoxClose.addEventListener('click', () => closeDialogLightox());
 
 domElements.lightBoxDirection.forEach((direction) => {
   direction.addEventListener('click', (e) => lightBoxNavigation(e));
 });
+document.addEventListener('keyup', (e) => lightBoxNavigation(e));
 
 async function init() {
   const photographerModel = photographerPage(photographer, images);

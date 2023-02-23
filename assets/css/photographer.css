@@ -54,11 +54,11 @@
 }
 
 .contact_button {
-  transition: scale 0.2s, color 0.2s, background-color 0.1s ease-out;
+  transition: transform 0.2s, color 0.2s, background-color 0.1s ease-out;
 }
 
 .contact_button:hover {
-  scale: 1.02;
+  transform: scale(1.02);
   background-color: #db8876;
   color: black;
 }
@@ -163,7 +163,8 @@ form textarea {
   font-size: 18px;
   color: #ffffff;
   animation: 0.5s;
-  transition: scale 0.2s, background-color 0.1s ease-out;
+  transition: transform 0.2s, background-color 0.1s ease-out;
+  z-index: 2;
 }
 
 .filter-first {
@@ -225,6 +226,7 @@ article {
   display: flex;
   align-items: center;
   flex-direction: column;
+  position: relative;
   width: 28%;
 }
 
@@ -244,6 +246,15 @@ article h5 {
   font-weight: 400;
   font-size: 24px;
   color: #911c1c;
+}
+.icon-play {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 10px;
+  top: 270px;
+  filter: invert(13%) sepia(61%) saturate(3743%) hue-rotate(349deg)
+    brightness(100%) contrast(90%);
 }
 
 .divLikes {
@@ -271,17 +282,17 @@ article h5 {
   bottom: 0;
   background: #db8876;
   border-radius: 5px 5px 0 0;
-  font-family: DM Sans;
+  font-family: 'DM Sans';
   font-size: 24px;
   font-weight: 500;
 }
 .stickyInfo img {
-  height: 18;
-  width: 17.5px;
+  height: 18px;
 }
 
 .stickyInfoInside {
   display: flex;
+  align-items: center;
   gap: 8px;
   padding-left: 35px;
   padding-right: 35px;

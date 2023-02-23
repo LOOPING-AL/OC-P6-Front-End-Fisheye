@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
 
@@ -17,13 +17,24 @@
   <body>
     <header>
       <a rel="stylesheet" href="../index.html" tabindex="1">
-        <img src="../assets/images/logo/logo.png" class="logo" />
+        <img
+          src="../assets/images/logo/logo.png"
+          class="logo"
+          alt="Fisheye Home Page"
+        />
       </a>
     </header>
 
     <main id="main">
       <div class="photograph-header">
-        <button class="button contact_button" id="open">Contactez-moi</button>
+        <button
+          class="button contact_button"
+          tabindex="2"
+          id="open"
+          aria-label="Contact Me"
+        >
+          Contactez-moi
+        </button>
       </div>
 
       <div class="filter">
@@ -32,16 +43,12 @@
         <div
           class="filter-choices"
           role="listbox"
-          tabindex="2"
-          for="filter"
+          tabindex="8"
           aria-haspopup="listbox"
           aria-expanded="true"
+          aria-label="Order By"
         >
-          <div
-            role="option"
-            name="Popularité"
-            class="filter-choices-choice filter-first"
-          >
+          <div role="option" class="filter-choices-choice filter-first">
             <h4 class="theChoice">Popularité</h4>
             <img
               class="filter-icon"
@@ -54,7 +61,11 @@
       <div class="images"></div>
       <div class="stickyInfo">
         <div class="stickyInfoInside">
-          <img src="../assets/images/icons/Vector.svg" class="allLikes" />
+          <img
+            src="../assets/images/icons/Vector.svg"
+            class="allLikes"
+            alt="likes"
+          />
         </div>
         <div class="stickyInfoInside">
           <div class="price">€ /jour</div>
@@ -77,11 +88,11 @@
           src="../assets/images/icons/leftRed.svg"
           alt="left"
         />
-        <video alt="" class="lightBox-media lightBox-video" controls>
-          <source src="" />
+        <video class="lightBox-media lightBox-video" controls>
+          <source src="/" />
         </video>
-        
-        <img class="lightBox-media lightBox-img" src="" alt="" />
+
+        <img class="lightBox-media lightBox-img" src="/" alt="image" />
         <img
           class="lightBox-direction"
           src="../assets/images/icons/rightRed.svg"
@@ -94,7 +105,7 @@
       <div class="modal">
         <header>
           <h2 class="modal-title">Contactez-moi,</h2>
-          <img src="../assets/images/icons/close.svg" id="close" />
+          <img src="../assets/images/icons/close.svg" id="close" alt="close" />
         </header>
 
         <form id="formAll">
@@ -103,6 +114,7 @@
             <input
               class="text-control"
               type="text"
+              tabindex="3"
               id="first"
               name="first"
               aria-invalid="false"
@@ -115,6 +127,7 @@
               class="text-control"
               type="text"
               id="last"
+              tabindex="4"
               name="last"
               aria-invalid="false"
               aria-errormessage="errlast"
@@ -125,6 +138,7 @@
             <input
               class="text-control"
               id="email"
+              tabindex="5"
               name="email"
               aria-invalid="false"
               aria-errormessage="erremail"
@@ -136,12 +150,13 @@
               class="text-control"
               id="message"
               name="message"
+              tabindex="6"
               aria-invalid="false"
               aria-errormessage="errmessage"
             ></textarea>
             <span id="errmessage" class="error-message"></span>
           </div>
-          <button type="submit" class="button">Envoyer</button>
+          <button type="submit" tabindex="7" class="button">Envoyer</button>
         </form>
       </div>
     </div>

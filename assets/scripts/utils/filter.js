@@ -2,13 +2,12 @@ import domElements from '../dom-elements.js';
 
 function useFilter(e) {
   const choices = ['Popularité', 'Date', 'Titre'];
-
   if (
     domElements.filterChoices?.childElementCount === 1 &&
     (e.type === 'click' || e.key === 'Enter')
   ) {
     domElements.filterIcon?.classList.add('open');
-    let tabCounter = 3;
+    let tabCounter = 9;
 
     choices.forEach((choice, id) => {
       if (choice !== domElements.filterChoices.children[0].outerText) {
@@ -32,8 +31,25 @@ function useFilter(e) {
 
     return;
   }
+  if (
+    e.key === 'Escape' ||
+    (e.type === 'focusout' && e.target.tabIndex === 10)
+  ) {
+    document.querySelectorAll('#choice').forEach((choice) => {
+      const thisChoice = choice;
+      thisChoice.style.animationName = 'disappear-animate';
+    });
 
-  if (choices.includes(e.target.textContent) && e.key !== 'Tab') {
+    setTimeout(() => {
+      while (domElements.filterChoices?.children.length > 1)
+        domElements.filterChoices?.children[1].remove();
+    }, 200);
+  }
+  if (
+    choices.includes(e.target.textContent) &&
+    e.type !== 'focusout' &&
+    e.key !== 'Tab'
+  ) {
     domElements.filterIcon?.classList.remove('open');
     domElements.theChoice.innerHTML = e.target.textContent;
 
@@ -63,8 +79,13 @@ function useFilter(e) {
         ? 1
         : -1;
     });
+    let tabCounter = 11;
 
-    imagesArr.forEach((image) => images.appendChild(image));
+    imagesArr.forEach((image) => {
+      tabCounter += 1;
+      image.childNodes[0].setAttribute('tabIndex', tabCounter);
+      images.appendChild(image);
+    });
 
     document.querySelectorAll('#choice').forEach((choice) => {
       const thisChoice = choice;

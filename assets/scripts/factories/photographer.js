@@ -18,6 +18,7 @@ export function photographerFactory(data, i) {
 
     const link = document.createElement('a');
     link.setAttribute('tabindex', i);
+    link.setAttribute('aria-label', name);
     const params = new URLSearchParams({ id });
     link.href = `/pages/photographer.html?${params}`;
 
@@ -94,7 +95,7 @@ export function photographerPage(photographer, images) {
     }
     const newImagesSort = images.sort(sortByFilter);
 
-    let tabCounter = 5;
+    let tabCounter = 11;
 
     newImagesSort.forEach((image) => {
       const article = document.createElement('article');
@@ -115,8 +116,14 @@ export function photographerPage(photographer, images) {
         source.setAttribute('src', src);
         img.setAttribute('alt', image.title);
         img.appendChild(source);
+        const icon = document.createElement('img');
+        icon.setAttribute('src', '../../assets/images/icons/play.svg');
+        icon.setAttribute('alt', 'icon play');
+        icon.classList = 'icon-play';
+        article.appendChild(icon);
       }
 
+      img.setAttribute('id', 'image');
       img.setAttribute('tabindex', tabCounter);
       img.classList = 'photographImage';
 
@@ -178,7 +185,10 @@ export function photographerPage(photographer, images) {
 }
 
 export function clickOnImages(e) {
-  if (e.target.className === 'photographImage') {
+  if (
+    e.target.className === 'photographImage' &&
+    (e.key === 'Enter' || e.type === 'click')
+  ) {
     domElements.lightBox.style.display = 'flex';
     getVideoOrImgInLightBox(e.srcElement.currentSrc);
   }
