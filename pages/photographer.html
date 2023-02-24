@@ -73,12 +73,12 @@
       </div>
     </main>
 
-    <dialog class="lightBox">
+    <dialog class="lightBox" aria-label="image closeup view">
       <div class="lightBox-top">
         <img
           class="lightBox-close"
           src="../assets/images/icons/closeRed.svg"
-          alt="close"
+          alt="Close dialog"
         />
       </div>
 
@@ -86,7 +86,7 @@
         <img
           class="lightBox-direction"
           src="../assets/images/icons/leftRed.svg"
-          alt="left"
+          alt="Previous image"
         />
         <video class="lightBox-media lightBox-video" controls>
           <source src="/" />
@@ -96,7 +96,7 @@
         <img
           class="lightBox-direction"
           src="../assets/images/icons/rightRed.svg"
-          alt="right"
+          alt="Next image"
         />
       </div>
     </dialog>
@@ -115,8 +115,9 @@
               class="text-control"
               type="text"
               tabindex="3"
-              id="first"
+              id="First name"
               name="first"
+              aria-label="First name"
               aria-invalid="false"
               aria-errormessage="errlast"
             /><br />
@@ -126,9 +127,10 @@
             <input
               class="text-control"
               type="text"
-              id="last"
+              id="Last name"
               tabindex="4"
               name="last"
+              aria-label="Last name"
               aria-invalid="false"
               aria-errormessage="errlast"
             /><br />
@@ -139,6 +141,7 @@
               class="text-control"
               id="email"
               tabindex="5"
+              aria-label="Email"
               name="email"
               aria-invalid="false"
               aria-errormessage="erremail"
@@ -148,7 +151,8 @@
             <label for="message">Votre message</label>
             <textarea
               class="text-control"
-              id="message"
+              aria-label="Your message"
+              id="Your message"
               name="message"
               tabindex="6"
               aria-invalid="false"

@@ -93,6 +93,7 @@ h5 {
   display: none;
   flex-direction: column;
   justify-content: center;
+  z-index: 2;
 }
 .lightBox-top {
   display: flex;
@@ -114,8 +115,8 @@ h5 {
 
 .lightBox-media {
   object-fit: cover;
-  max-height: 80%;
-  max-width: 80%;
+  max-height: 50%;
+  max-width: 70%;
 }
 .lightBox-video {
   display: none;

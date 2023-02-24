@@ -26,6 +26,7 @@ const { images } = await getPhotographersImages(photographer);
 
 domElements.close.addEventListener('click', () => closeModalForm());
 domElements.open.addEventListener('click', () => displayModalForm());
+domElements.modal.addEventListener('keyup', (e) => closeModalForm(e));
 domElements.filterChoices.addEventListener('click', (e) =>
   useFilter(e, photographer, images)
 );
@@ -55,7 +56,7 @@ domElements.lightBoxClose.addEventListener('click', () => closeDialogLightox());
 domElements.lightBoxDirection.forEach((direction) => {
   direction.addEventListener('click', (e) => lightBoxNavigation(e));
 });
-document.addEventListener('keyup', (e) => lightBoxNavigation(e));
+domElements.lightBox.addEventListener('keyup', (e) => lightBoxNavigation(e));
 
 async function init() {
   const photographerModel = photographerPage(photographer, images);
@@ -71,6 +72,7 @@ async function init() {
     getHeaderLeft,
     domElements.contact_button
   );
+  domElements.modal.setAttribute('aria-label', `Contact me ${name}`);
   domElements.contact_button?.after(getHeaderRight);
 }
 

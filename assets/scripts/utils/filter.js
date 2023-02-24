@@ -45,12 +45,13 @@ function useFilter(e) {
         domElements.filterChoices?.children[1].remove();
     }, 200);
   }
+
   if (
     choices.includes(e.target.textContent) &&
     e.type !== 'focusout' &&
     e.key !== 'Tab'
   ) {
-    domElements.filterIcon?.classList.remove('open');
+    domElements.filterIcon.classList.remove('open');
     domElements.theChoice.innerHTML = e.target.textContent;
 
     const images = document.querySelector('.images');
@@ -63,27 +64,51 @@ function useFilter(e) {
       }
     });
 
+    const getNumberOfLikes = (a) => {
+      if (a.childNodes.length === 3)
+        return Number(a.childNodes[2].childNodes[1].childNodes[0].innerHTML);
+      return Number(a.childNodes[1].childNodes[1].childNodes[0].innerText);
+    };
+    const getTitle = (a) => {
+      if (a.childNodes.length === 3)
+        return a.childNodes[1].attributes.alt.value;
+      return a.childNodes[0].attributes.alt.value;
+    };
+
     imagesArr.sort((a, b) => {
       const theChoice = domElements.theChoice.innerHTML;
       if (theChoice === 'Popularité') {
-        return Number(b.childNodes[1].childNodes[1].innerText) >
-          Number(a.childNodes[1].childNodes[1].innerText)
-          ? 1
-          : -1;
+        const aNumberOfLikes = getNumberOfLikes(a);
+        const bNumberOfLikes = getNumberOfLikes(b);
+        return bNumberOfLikes > aNumberOfLikes ? 1 : -1;
       }
       if (theChoice === 'Date') {
         return b.dataset.date < a.dataset.date ? 1 : -1;
       }
-      return a.childNodes[0].attributes.alt.value >
-        b.childNodes[0].attributes.alt.value
-        ? 1
-        : -1;
+      const aTitle = getTitle(a);
+      const bTitle = getTitle(b);
+      return aTitle > bTitle ? 1 : -1;
     });
     let tabCounter = 11;
 
     imagesArr.forEach((image) => {
-      tabCounter += 1;
-      image.childNodes[0].setAttribute('tabIndex', tabCounter);
+      if (image.childNodes[2]) {
+        tabCounter += 1;
+        image.childNodes[1].setAttribute('tabIndex', tabCounter);
+        tabCounter += 1;
+        image.childNodes[2].lastElementChild.lastElementChild.setAttribute(
+          'tabIndex',
+          tabCounter
+        );
+      } else {
+        tabCounter += 1;
+        image.childNodes[0].setAttribute('tabIndex', tabCounter);
+        tabCounter += 1;
+        image.childNodes[1].lastElementChild.lastElementChild.setAttribute(
+          'tabIndex',
+          tabCounter
+        );
+      }
       images.appendChild(image);
     });
 

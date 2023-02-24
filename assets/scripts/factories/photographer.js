@@ -137,9 +137,11 @@ export function photographerPage(photographer, images) {
       const likes = document.createElement('h5');
       likes.textContent = image.likes;
 
+      tabCounter += 1;
       const like = document.createElement('img');
       like.setAttribute('src', '../../assets/images/icons/like.svg');
       like.setAttribute('alt', 'like');
+      like.setAttribute('tabindex', tabCounter);
       like.classList = 'like';
 
       div.appendChild(title);
@@ -185,14 +187,32 @@ export function photographerPage(photographer, images) {
 }
 
 export function clickOnImages(e) {
+  const images = document.querySelector('.images');
+  const lastTabIndexOfImages =
+    images.lastElementChild.lastElementChild.lastElementChild.lastElementChild
+      .tabIndex;
+  domElements.lightBoxClose.setAttribute('tabindex', lastTabIndexOfImages + 1);
+  domElements.lightBoxClose.focus();
+  domElements.lightBoxDirection[0].setAttribute(
+    'tabindex',
+    lastTabIndexOfImages + 2
+  );
+  domElements.lightBoxDirection[1].setAttribute(
+    'tabindex',
+    lastTabIndexOfImages + 4
+  );
   if (
     e.target.className === 'photographImage' &&
     (e.key === 'Enter' || e.type === 'click')
   ) {
     domElements.lightBox.style.display = 'flex';
-    getVideoOrImgInLightBox(e.srcElement.currentSrc);
+    getVideoOrImgInLightBox(e.srcElement.currentSrc, lastTabIndexOfImages + 3);
   }
-  if (e.target.className.includes('like')) {
+  if (
+    e.target.className.includes('like') &&
+    e.key !== 'Tab' &&
+    e.key !== 'Shift'
+  ) {
     const likes = e.target.parentElement.childNodes[0];
     const allLikes = document.getElementById('numberOfLikes');
 
