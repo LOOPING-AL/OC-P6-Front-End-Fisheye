@@ -84,7 +84,7 @@ export function lightBoxNavigation(e) {
     }
     getVideoOrImgInLightBox(allImagesSrc[index - 1]);
   }
-  photographer;
+
   if (e.key === ' ' && domElements.lightBoxVideo.style.display === 'block') {
     domElements.lightBoxVideo.play();
   }
