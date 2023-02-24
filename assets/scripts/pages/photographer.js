@@ -27,6 +27,7 @@ const { images } = await getPhotographersImages(photographer);
 domElements.close.addEventListener('click', () => closeModalForm());
 domElements.open.addEventListener('click', () => displayModalForm());
 domElements.modal.addEventListener('keyup', (e) => closeModalForm(e));
+
 domElements.filterChoices.addEventListener('click', (e) =>
   useFilter(e, photographer, images)
 );
@@ -52,7 +53,6 @@ domElements.images.addEventListener('click', (e) => clickOnImages(e));
 domElements.images.addEventListener('keydown', (e) => clickOnImages(e));
 
 domElements.lightBoxClose.addEventListener('click', () => closeDialogLightox());
-
 domElements.lightBoxDirection.forEach((direction) => {
   direction.addEventListener('click', (e) => lightBoxNavigation(e));
 });
@@ -63,6 +63,7 @@ async function init() {
   const name = photographerModel.getPhotographerName();
   const getHeaderLeft = photographerModel.getHeaderLeft();
   const getHeaderRight = photographerModel.getHeaderRight();
+
   photographerModel.getAllImages();
   photographerModel.getStickyInfo();
 

@@ -69,6 +69,7 @@ function useFilter(e) {
         return Number(a.childNodes[2].childNodes[1].childNodes[0].innerHTML);
       return Number(a.childNodes[1].childNodes[1].childNodes[0].innerText);
     };
+
     const getTitle = (a) => {
       if (a.childNodes.length === 3)
         return a.childNodes[1].attributes.alt.value;
@@ -82,13 +83,16 @@ function useFilter(e) {
         const bNumberOfLikes = getNumberOfLikes(b);
         return bNumberOfLikes > aNumberOfLikes ? 1 : -1;
       }
+
       if (theChoice === 'Date') {
         return b.dataset.date < a.dataset.date ? 1 : -1;
       }
+
       const aTitle = getTitle(a);
       const bTitle = getTitle(b);
       return aTitle > bTitle ? 1 : -1;
     });
+
     let tabCounter = 11;
 
     imagesArr.forEach((image) => {
@@ -109,6 +113,7 @@ function useFilter(e) {
           tabCounter
         );
       }
+
       images.appendChild(image);
     });
 

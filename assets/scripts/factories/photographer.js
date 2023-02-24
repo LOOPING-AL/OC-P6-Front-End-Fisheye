@@ -93,6 +93,7 @@ export function photographerPage(photographer, images) {
       }
       return b.title < a.title ? 1 : -1;
     }
+
     const newImagesSort = images.sort(sortByFilter);
 
     let tabCounter = 11;
@@ -114,8 +115,10 @@ export function photographerPage(photographer, images) {
         img = document.createElement('video');
         const source = document.createElement('source');
         source.setAttribute('src', src);
+
         img.setAttribute('alt', image.title);
         img.appendChild(source);
+
         const icon = document.createElement('img');
         icon.setAttribute('src', '../../assets/images/icons/play.svg');
         icon.setAttribute('alt', 'icon play');
@@ -129,6 +132,7 @@ export function photographerPage(photographer, images) {
 
       const div = document.createElement('div');
       const title = document.createElement('h5');
+
       title.textContent = image.title;
 
       const divLikes = document.createElement('div');
@@ -139,6 +143,7 @@ export function photographerPage(photographer, images) {
 
       tabCounter += 1;
       const like = document.createElement('img');
+
       like.setAttribute('src', '../../assets/images/icons/like.svg');
       like.setAttribute('alt', 'like');
       like.setAttribute('tabindex', tabCounter);
@@ -151,6 +156,7 @@ export function photographerPage(photographer, images) {
       article.appendChild(img);
       article.appendChild(div);
       domElements.images.appendChild(article);
+
       tabCounter += 1;
     });
   }
@@ -164,6 +170,7 @@ export function photographerPage(photographer, images) {
     const divLikes = document.createElement('div');
     divLikes.id = 'numberOfLikes';
     divLikes.textContent = likes;
+
     domElements.stickyInfoAllLikes?.parentNode.insertBefore(
       divLikes,
       domElements.stickyInfoAllLikes
@@ -171,6 +178,7 @@ export function photographerPage(photographer, images) {
 
     const divPrice = document.createElement('div');
     divPrice.textContent = price;
+
     domElements.stickyInfoPrice.parentNode.insertBefore(
       divPrice,
       domElements.stickyInfoPrice
@@ -201,6 +209,7 @@ export function clickOnImages(e) {
     'tabindex',
     lastTabIndexOfImages + 4
   );
+
   if (
     e.target.className === 'photographImage' &&
     (e.key === 'Enter' || e.type === 'click')
@@ -208,6 +217,7 @@ export function clickOnImages(e) {
     domElements.lightBox.style.display = 'flex';
     getVideoOrImgInLightBox(e.srcElement.currentSrc, lastTabIndexOfImages + 3);
   }
+
   if (
     e.target.className.includes('like') &&
     e.key !== 'Tab' &&
@@ -223,6 +233,7 @@ export function clickOnImages(e) {
       likes.setAttribute('increment', false);
       return;
     }
+
     allLikes.textContent = Number(allLikes.textContent) + 1;
     likes.setAttribute('increment', true);
     likes.textContent = Number(e.target.parentElement.innerText) + 1;

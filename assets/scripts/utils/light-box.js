@@ -8,16 +8,21 @@ export function getVideoOrImgInLightBox(src, index) {
     lightBoxVideoH.setAttribute('tabindex', index);
     lightBoxImgH.setAttribute('tabindex', index);
   }
+
   if (/.*\.mp4$/.test(src)) {
     lightBoxImgH.style.display = 'none';
     lightBoxVideoH.style.display = 'block';
     lightBoxVideoH.alt = src.replace(/^.*\/(.*?)\.[^.]+$/, '$1');
     lightBoxVideoH.childNodes[1].src = src;
-    lightBoxVideoH.setAttribute('aria-label', src);
+    lightBoxVideoH.setAttribute(
+      'aria-label',
+      src.replace(/^.*\/(.*?)\.[^.]+$/, '$1')
+    );
     lightBoxVideoH.load();
     lightBoxVideoH.focus();
     return;
   }
+
   lightBoxImgH.style.display = 'block';
   lightBoxVideoH.style.display = 'none';
   lightBoxImgH.src = src;
@@ -48,6 +53,7 @@ export function lightBoxNavigation(e) {
       ? imageSrc === lightBoxImgH.src
       : imageSrc === lightBoxVideoH.childNodes[1].src
   );
+
   if (
     (e.target.alt === 'Next image' && e.key === 'Enter') ||
     e.key === 'ArrowRight'
@@ -59,6 +65,7 @@ export function lightBoxNavigation(e) {
     getVideoOrImgInLightBox(allImagesSrc[index + 1]);
     return;
   }
+
   if (
     (e.target.alt === 'Close dialog' && e.key === 'Enter') ||
     e.key === 'Escape'
@@ -77,6 +84,7 @@ export function lightBoxNavigation(e) {
     }
     getVideoOrImgInLightBox(allImagesSrc[index - 1]);
   }
+  photographer;
   if (e.key === ' ' && domElements.lightBoxVideo.style.display === 'block') {
     domElements.lightBoxVideo.play();
   }
