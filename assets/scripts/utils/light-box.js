@@ -53,9 +53,10 @@ export function lightBoxNavigation(e) {
       ? imageSrc === lightBoxImgH.src
       : imageSrc === lightBoxVideoH.childNodes[1].src
   );
-
+  console.log(e);
   if (
-    (e.target.alt === 'Next image' && e.key === 'Enter') ||
+    (e.target.alt === 'Next image' &&
+      (e.key === 'Enter' || e.type === 'click')) ||
     e.key === 'ArrowRight'
   ) {
     if (index === allImagesSrc.length - 1) {
@@ -75,7 +76,8 @@ export function lightBoxNavigation(e) {
   }
 
   if (
-    (e.target.alt === 'Previous image' && e.key === 'Enter') ||
+    (e.target.alt === 'Previous image' &&
+      (e.key === 'Enter' || e.type === 'click')) ||
     e.key === 'ArrowLeft'
   ) {
     if (index === 0) {

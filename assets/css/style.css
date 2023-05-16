@@ -105,6 +105,7 @@ h5 {
 }
 .lightBox-close {
   width: 42px;
+  cursor: pointer;
 }
 
 .lightBox-navigation {
@@ -126,4 +127,8 @@ h5 {
 }
 .lightBox-direction {
   padding: 50px;
+  cursor: pointer;
+}
+#image {
+  cursor: pointer;
 }
